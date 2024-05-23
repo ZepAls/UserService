@@ -38,7 +38,8 @@ namespace DAL
 
         public void DeleteUser(UserDTO user)
         {
-            context.Users.Remove(user);
+            UserDTO toDelete = this.GetUser(user.Id);
+            context.Users.Remove(toDelete);
             context.SaveChanges();
         }
 
