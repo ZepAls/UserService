@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DTO;
+﻿using DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL

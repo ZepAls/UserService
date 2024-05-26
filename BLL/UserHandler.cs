@@ -1,5 +1,5 @@
-﻿using DTO;
-using DAL;
+﻿using DAL;
+using DTO;
 
 namespace BLL
 {

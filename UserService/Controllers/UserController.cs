@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL;
 using DTO;
-using BLL;
+using RabbitMQ;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UserService.Controllers
 {
@@ -8,6 +9,15 @@ namespace UserService.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+
+        // GET api/<StudentController>/5
+        [HttpGet("test/{id}")]
+        public ActionResult testrabbitmq(int id)
+        {
+            Sender sender = new Sender();
+            sender.SendRemoveRoleMessage(id);
+            return NotFound($"send test message");
+        }
 
         // GET: api/<UserController>
         [HttpGet]
@@ -70,6 +80,9 @@ namespace UserService.Controllers
             if (handler.GetUser(user.Id) != null)
             {
                 handler.DeleteUser(user);
+
+                //add rabbitmq send thingy
+
                 return Ok("User Deleted succesfully");
             }
             return BadRequest($"User could not be deleted: There is no user with id {user.Id}");
