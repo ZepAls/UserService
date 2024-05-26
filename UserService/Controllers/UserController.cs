@@ -10,6 +10,9 @@ namespace UserService.Controllers
     public class UserController : ControllerBase
     {
 
+
+        //create video to show automatically pushing to Azure
+
         // GET api/<StudentController>/5
         [HttpGet("test/{id}")]
         public ActionResult testrabbitmq(int id)
@@ -79,9 +82,12 @@ namespace UserService.Controllers
             UserHandler handler = new UserHandler();
             if (handler.GetUser(user.Id) != null)
             {
+
+                Sender sender = new Sender();
+                sender.SendRemoveRoleMessage(user.Id);
+
                 handler.DeleteUser(user);
 
-                //add rabbitmq send thingy
 
                 return Ok("User Deleted succesfully");
             }
