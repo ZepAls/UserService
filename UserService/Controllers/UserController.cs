@@ -9,6 +9,12 @@ namespace UserService.Controllers
     public class UserController : ControllerBase
     {
 
+        [HttpGet("AzureTest")]
+        public ActionResult AzureTest()
+        {
+            return Ok("show Azure API calls working");
+        }
+
         // GET: api/<UserController>
         [HttpGet]
         public ActionResult Get()
